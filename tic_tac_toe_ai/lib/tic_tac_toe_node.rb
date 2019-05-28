@@ -2,7 +2,7 @@ require_relative 'tic_tac_toe'
 
 class TicTacToeNode
 
-  attr_reader :board, :next_mover_mark
+  attr_reader :board, :next_mover_mark, :prev_move_pos
 
   def initialize(board, next_mover_mark, prev_move_pos = nil)
     @board = board
@@ -24,11 +24,13 @@ class TicTacToeNode
     (0..2).each do |index1|
       (0..2).each do |index2|
         pos = [index1, index2]
-        dupe = @board.dup if @board.empty?(pos)
-        dupe[pos] = @next_mover_mark
-        moves << TicTacToeNode.new(dupe, mark, pos)
+        if @board.empty?(pos)
+          dupe = @board.dup 
+          dupe[pos] = @next_mover_mark
+          moves << TicTacToeNode.new(dupe, mark, pos)
+        end
       end
     end
-    move
+    moves
   end
 end
