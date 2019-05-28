@@ -21,6 +21,14 @@ class TicTacToeNode
   def children
     moves = []
     mark = @next_mover_mark == :x ? :o : :x
-    
+    (0..2).each do |index1|
+      (0..2).each do |index2|
+        pos = [index1, index2]
+        dupe = @board.dup if @board.empty?(pos)
+        dupe[pos] = @next_mover_mark
+        moves << TicTacToeNode.new(dupe, mark, pos)
+      end
+    end
+    move
   end
 end
