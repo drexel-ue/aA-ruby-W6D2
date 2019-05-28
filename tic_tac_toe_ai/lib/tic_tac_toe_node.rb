@@ -7,6 +7,7 @@ class TicTacToeNode
   def initialize(board, next_mover_mark, prev_move_pos = nil)
     @board = board
     @next_mover_mark = next_mover_mark
+    @prev_move_pos = prev_move_pos if prev_move_pos != nil
   end
 
   def losing_node?(evaluator)
@@ -20,8 +21,6 @@ class TicTacToeNode
   def children
     moves = []
     mark = @next_mover_mark == :x ? :o : :x
-    9.times do
-      moves << TicTacToeNode.new(@board)
-    end
+    
   end
 end
