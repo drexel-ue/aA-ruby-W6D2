@@ -57,7 +57,20 @@ class KnightPathFinder
     end
 
     def find_path(end_pos)
-        @root_node.bfs(end_pos)
+        traceback(@root_node.dfs(end_pos)).reverse
+    end
+
+    def traceback(end_node)
+        arr = []
+        until end_node.parent == nil
+            arr << end_node.value 
+            end_node = end_node.parent
+        end
+        arr << @root_node.value
     end
 
 end
+
+kpf = KnightPathFinder.new([0, 0])
+p kpf.find_path([7, 6]) # => [[0, 0], [1, 2], [2, 4], [3, 6], [5, 5], [7, 6]]
+p kpf.find_path([6, 2]) # => [[0, 0], [1, 2], [2, 0], [4, 1], [6, 2]]
