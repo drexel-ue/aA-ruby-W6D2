@@ -1,4 +1,3 @@
-#require 'byebug'
 require_relative 'polytreenode'
 
 class KnightPathFinder
@@ -29,10 +28,7 @@ class KnightPathFinder
         valid_moves
     end
 
-    attr_reader :considered_positions
-
     def initialize(position)
-       # debugger
         @position = position
         @considered_positions = [position]
         @root_node = PolyTreeNode.new(position)
@@ -57,15 +53,6 @@ class KnightPathFinder
                 queue << new_node
             end
         end
-
-        # moves = self.new_move_positions(@position) # pos = [0,0] => [[1,2], [2,1]]
-
-        # until moves.empty?
-        #     move = moves.shift
-        #     memo = PolyTreeNode.new(move)
-        #     root_node.add_child(memo)
-        #     KnightPathFinder.valid_moves(memo.value).each { |potential| moves << potential if !@considered_positions.include?(potential)}
-        # end
      
     end
 
