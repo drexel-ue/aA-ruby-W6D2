@@ -57,7 +57,3 @@ class KnightPathFinder
     end
 
 end
-
-
-p tom = KnightPathFinder.new([0,0])
-p tom.considered_positions.uniq.count == tom.considered_positions.count
