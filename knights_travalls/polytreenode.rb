@@ -35,20 +35,18 @@ class PolyTreeNode
     end
 
     def bfs(target_value)
-        return self if @value == target_value
-
+        arr = []
         queue = [self]
 
         until queue.empty?
             node = queue.shift
+            arr << node.value if node.dfs(target_value) != nil
             if node.value == target_value
-                return node
+                return arr
             else
                 node.children.each { |child| queue << child }
             end
         end
-
-        nil
     end
 
 end
